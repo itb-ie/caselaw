@@ -1,7 +1,6 @@
 import requests
 # this is a library that we use to pass http requests
 
-
 # there are multiple pages potentially, because a search only includes 100 cases per page. So we open all the links and save each page.
 def get_pages(url):
     page_list = []
