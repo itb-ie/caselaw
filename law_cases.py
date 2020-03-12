@@ -1,17 +1,20 @@
 import requests
 # this is a library that we use to pass http requests
+# an http request is what a web browsers sends to a web server and then displays the information on screen
 
 # there are multiple pages potentially, because a search only includes 100 cases per page. So we open all the links and save each page.
 def get_pages(url):
     page_list = []
     while True:
         # this is the only place in which we do a request and get the page from the online website case.law
+        # result variable is the entire content for that page: a big dictionary of data
         result = requests.get(url).json()
 
         # result is what the previous request returns. It is what accessing the URL will show on the page. This entire result we store in the list below:
         page_list.append(result)
 
         # then we get the URL for the next page that we want to load
+        # since result is a dictionary, we get the value for key next which will point us to the next page of results (it it exists)
         url = result['next']
 
         # if there is no URL is means that we have processed all the pages
@@ -64,6 +67,7 @@ def search_story(keyword):
     print(oldest_case)
 
 # here you enter the keyword to be searched. Use %20 for SPACE character
-print("before")
+print("Please wait, this could take q while depending on the query performed")
+# Here you can change the query that you want to do
 search_story('El%20Chapo%20Guzman')
-print("after")
+print("And we are all done")
