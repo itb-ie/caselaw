@@ -60,7 +60,7 @@ def search_story(keyword):
             oldest_case["id"] = id
             oldest_case["jurisdiction"] = jurisdiction
             oldest_case["date"] = date
-            oldest_case["url"] = url+"?full_case=true&format=html"
+            oldest_case["url"] = url+"?full_case=true&body_format=html"
             oldest_case["name"] = name
 
     print("there are ", results_count, "cases")
