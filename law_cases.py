@@ -30,7 +30,6 @@ def get_cases(url):
     # call the previous function to get all the URL pages
     page_list = get_pages(url)
     for page in page_list:
-	
         # each page has a list of results, that is actually the list of cases, so we get the list and get each case out
         for result in page['results']:
             # append each case to the list of cases
@@ -41,15 +40,12 @@ def get_cases(url):
 def search_story(keyword):
     starting_url = 'https://api.case.law/v1/cases/?search=' + keyword
 
-    results_count = 0
-
     # call previous function to get all the cases for the starting_url that is constructed above
     case_list = get_cases(starting_url)
     oldest_case = {}
-
+    results_count = len(case_list)
     # go through each case
     for case in case_list:
-        results_count += 1
 
         id = case['id']
         name = case['name_abbreviation']
@@ -63,11 +59,13 @@ def search_story(keyword):
             oldest_case["url"] = url+"?full_case=true&body_format=html"
             oldest_case["name"] = name
 
-    print("there are ", results_count, "cases")
+    print(f"there are {results_count} cases")
     print(oldest_case)
 
 # here you enter the keyword to be searched. Use %20 for SPACE character
-print("Please wait, this could take q while depending on the query performed")
+print("Please wait, this could take a while depending on the query performed")
 # Here you can change the query that you want to do
-search_story('El%20Chapo%20Guzman')
+# search_story('El%20Chapo%20Guzman')
+search_story('"Mike%20Tyson"')
+
 print("And we are all done")
